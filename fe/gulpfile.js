@@ -113,3 +113,7 @@ gulp.task('browser-sync', function () {
         files: ['./dist/**/*']
     });
 });
+gulp.task('default',function(){
+    console.log(`gulp build =====> 生成dist目录`);
+    console.log(`gulp watch =====> 监听文件增删改生成对应的dist文件，启动服务器`);
+})
