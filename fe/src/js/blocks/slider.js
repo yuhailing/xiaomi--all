@@ -4,6 +4,6 @@
  * @Last modified by:   yanhaowei
  * @Last modified time: 2017-05-28T14:50:32+08:00
  */
-app.lazy=function(){
-    alert(1);
+app.slider=function(){
+   alert(22222)
 }

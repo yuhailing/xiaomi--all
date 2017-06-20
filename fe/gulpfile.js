@@ -31,6 +31,10 @@ var fn = {
     html_dir: {
         from: './src/html/*.html',
         to: './dist/html'
+    },
+    img_dir:{
+        from:'./src/img/**/*',
+        to:'./dist/img'
     }
 }
 //sass处理
@@ -55,7 +59,7 @@ gulp.task('watch-js', function() {
 })
 //js-lib
 gulp.task('lib',function(){
-    return gulp.src('./src/lib/*').pipe(gulp.dest('./dist/lib'))
+    return gulp.src('./src/lib/**/*').pipe(gulp.dest('./dist/lib'))
 })
 gulp.task('watch-lib',function(){
     return $.watch('./src/lib/**/*',function(){
@@ -72,20 +76,28 @@ gulp.task('watch-html', function() {
         fn.html(fn.html_dir.from, fn.html_dir.to);
     })
 });
-
+//img
+gulp.task('img',function(){
+    return gulp.src(fn.img_dir.from).pipe(gulp.dest(fn.img_dir.to))
+});
+gulp.task('watch-img',function(){
+    return $.watch(fn.img_dir.from, function() {
+        console.log('img-------------------------change');
+        gulp.src(fn.img_dir.from).pipe(gulp.dest(fn.img_dir.to));
+    })
+});
 //clean
 gulp.task('clean', function(cb) {
     return gulp.src('./dist/').pipe($.clean());
 })
 
 //构建
-gulp.task('creat',['clean','html','sass','js','lib']);
 gulp.task('build',function(){
     runSequence('clean',
-        ['html','sass','js','lib']);
+        ['html','sass','js','lib','img']);
 });
 gulp.task('watch',function(){
-    runSequence('browser-sync',['watch-html','watch-sass','watch-js','watch-lib'])
+    runSequence('browser-sync',['watch-html','watch-sass','watch-js','watch-lib','watch-img'])
 });
 //浏览器刷新
 gulp.task('browser-sync', function () {

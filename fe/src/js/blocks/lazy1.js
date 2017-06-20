@@ -5,6 +5,3 @@
  * @Last modified time: 2017-05-28T14:55:08+08:00
  */
 
-
-
-alert(1)
